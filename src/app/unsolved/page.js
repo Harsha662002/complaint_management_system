@@ -1,42 +1,39 @@
-import React from "react";
+"use client";
+
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/navbar/navbar";
 import Sidebar from "../components/sidebar/sidebar";
 import Unsolved from "../components/unsolved/unsolved";
+import { AuthContext } from "@/app/contexts/authcontext";
 
 const Unsolvedpage = () => {
-  var data = [
-    {
-      id: 1,
-      Name: "Harsha",
-      Subject: "Har",
-      Type: "Sales",
-      ComplaintDate: "15-5-23",
-      Description: "Test message",
-      Status: "pending",
-    },
-    {
-      id: 2,
-      Name: "Harsha",
-      Subject: "Vik",
-      Type: "Accounting",
-      ComplaintDate: "16-5-23",
-      Description: "Test message2",
-      Status: "pending",
-    },
-    {
-      id: 3,
-      Name: "Harsha",
-      Subject: "Hello",
-      Type: "Others",
-      ComplaintDate: "18-5-23",
-      Description: "Test message3",
-      Status: "rejected",
-    },
-  ];
+  const { isLoggedIn, loggedInUserEmail } = useContext(AuthContext);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/api/complaints", {
+        method: "GET",
+      });
+      if (!response.ok) {
+        throw new Error("Error fetching datad");
+      }
+      const responseData = await response.json();
+      console.log(responseData);
+      const filteredData = responseData.complaints.filter(
+        (complaint) => complaint.Email === loggedInUserEmail
+      );
+      setData(filteredData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <div>
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} />
       <div className="flex gap-6 flex-row">
         <div>
           <Sidebar />

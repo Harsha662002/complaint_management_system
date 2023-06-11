@@ -14,7 +14,7 @@ const Sidebar = () => {
     { name: "Add Complaint", link: "/complaints", icon: AiOutlineForm },
     { name: "Unsolved Complaints", link: "/unsolved", icon: BsListTask },
     { name: "Solved Complaints", link: "/solved", icon: FaCheckCircle },
-    { name: "Profile", link: "/", icon: BsPersonFill },
+    { name: "Profile", link: "/profile", icon: BsPersonFill },
 
     { name: "Logout", link: "/", icon: FiLogOut },
   ];

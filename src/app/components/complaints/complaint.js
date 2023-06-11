@@ -1,12 +1,49 @@
-import React, { useState } from "react";
+"use client";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "@/app/contexts/authcontext";
 
 const Complaint = () => {
   const [subject, setSubject] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
+  const { loggedInUserEmail } = useContext(AuthContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const id = Math.floor(Math.random() * 1000000);
+    const currentDate = new Date().toLocaleDateString("en-GB");
+    const Email = loggedInUserEmail;
+
+    const formData = {
+      id,
+      Email,
+      ComplaintDate: currentDate,
+      Status: "pending",
+      subject,
+      type,
+      description,
+    };
+
+    try {
+      const response = await fetch("/api/complaints", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubject("");
+        setType("");
+        setDescription("");
+        console.log("Complaint submitted successfully!");
+      } else {
+        console.error("Failed to submit complaint.");
+      }
+    } catch (error) {
+      console.error("Error submitting complaint:", error);
+    }
   };
 
   return (

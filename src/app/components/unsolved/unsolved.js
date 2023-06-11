@@ -38,9 +38,7 @@ const Unsolved = (props) => {
             <th className="hidden text-center sm:table-cell border p-2 border-solid border-black">
               ID
             </th>
-            <th className="hidden text-center sm:table-cell border p-2 border-solid border-black">
-              Name
-            </th>
+
             <th className="text-center border p-2 border-solid border-black">
               Subject
             </th>
@@ -70,14 +68,12 @@ const Unsolved = (props) => {
               <td className="hidden text-center sm:table-cell border p-2 border-solid border-black">
                 {complaint.id}
               </td>
-              <td className="hidden text-center sm:table-cell border p-2 border-solid border-black">
-                {complaint.Name}
-              </td>
+
               <td className="text-center border p-2 border-solid border-black">
-                {complaint.Subject}
+                {complaint.subject}
               </td>
               <td className="hidden text-center md:table-cell border p-2 border-solid border-black">
-                {complaint.Type}
+                {complaint.type}
               </td>
               <td className="hidden text-center md:table-cell border p-2 border-solid border-black">
                 {complaint.ComplaintDate}

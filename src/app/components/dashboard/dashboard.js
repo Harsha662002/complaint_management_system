@@ -34,7 +34,7 @@ const Dashboard = (props) => {
     setSelectedYear(event.target.value);
   };
   const getYearFromDate = (dateString) => {
-    const dateParts = dateString.split("-");
+    const dateParts = dateString.split("/");
     if (dateParts.length === 3) {
       return dateParts[2];
     }
@@ -45,7 +45,7 @@ const Dashboard = (props) => {
   const months = {};
 
   chartData.forEach((item) => {
-    const dateParts = item.ComplaintDate.split("-");
+    const dateParts = item.ComplaintDate.split("/");
     const month = parseInt(dateParts[1]);
     const status = item.Status;
 
