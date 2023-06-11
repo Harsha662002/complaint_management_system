@@ -14,11 +14,10 @@ const Complaintmodal = (props) => {
         <div className="modal-content py-4 text-left px-6 flex flex-col items-center">
           <h3 className="text-lg font-semibold mb-4">Complaint Details</h3>
           <p>ID: {props.complaint.id}</p>
-          <p>Name: {props.complaint.Name}</p>
-          <p>Subject: {props.complaint.Subject}</p>
-          <p>Type: {props.complaint.Type}</p>
+          <p>Subject: {props.complaint.subject}</p>
+          <p>Type: {props.complaint.type}</p>
           <p>ComplaintDate: {props.complaint.ComplaintDate}</p>
-          <p>Description: {props.complaint.Description}</p>
+          <p>Description: {props.complaint.description}</p>
           <div className="mt-6">
             <button
               className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded"

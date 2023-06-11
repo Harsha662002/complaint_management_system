@@ -1,10 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Transition } from "@headlessui/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { AuthContext } from "@/app/contexts/authcontext";
 
 const Navbar = () => {
+  const router = useRouter();
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    router.push("/loginemp");
+  };
 
   return (
     <div>
@@ -40,12 +49,22 @@ const Navbar = () => {
               </div>
             </div>
             <div className="-mr-2 flex ">
-              <a
-                href="/login"
-                className="inline-block text-3 px-4 py-2 leading-none border rounded text-white border-white ml-12 hover:bg-gray-700"
-              >
-                Login
-              </a>
+              {isLoggedIn ? (
+                <a
+                  href="#"
+                  onClick={handleLogout}
+                  className="px-3 py-2 rounded-md text-sm font-medium text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                >
+                  Logout
+                </a>
+              ) : (
+                <a
+                  href="/login"
+                  className="px-3 py-2 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Login
+                </a>
+              )}
             </div>
             <div className="-mr-2 flex md:hidden">
               <button

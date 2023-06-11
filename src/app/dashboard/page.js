@@ -1,68 +1,41 @@
-import React from "react";
+"use client";
+
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/navbar/navbar";
 import Sidebar from "../components/sidebar/sidebar";
 import Dashboard from "../components/dashboard/dashboard";
+import { AuthContext } from "@/app/contexts/authcontext";
 
 const DashboardPage = () => {
-  var data = [
-    {
-      id: 1,
-      Name: "Harsha",
-      Subject: "Har",
-      Type: "Sales",
-      ComplaintDate: "15-05-2023",
-      Description: "Test message",
-      Status: "rejected",
-    },
-    {
-      id: 2,
-      Name: "Harsha",
-      Subject: "Vik",
-      Type: "Accounting",
-      ComplaintDate: "16-05-2023",
-      Description: "Test message2",
-      Status: "completed",
-    },
-    {
-      id: 3,
-      Name: "Harsha",
-      Subject: "Hello",
-      Type: "Others",
-      ComplaintDate: "18-05-2023",
-      Description: "Test message3",
-      Status: "completed",
-    },
-    {
-      id: 4,
-      Name: "Harsha",
-      Subject: "Hello",
-      Type: "Others",
-      ComplaintDate: "18-06-2023",
-      Description: "Test message3",
-      Status: "pending",
-    },
-    {
-      id: 5,
-      Name: "Harsha",
-      Subject: "Hello",
-      Type: "Others",
-      ComplaintDate: "18-06-2023",
-      Description: "Test message3",
-      Status: "completed",
-    },
-    {
-      id: 6,
-      Name: "Harsha",
-      Subject: "Hello",
-      Type: "Others",
-      ComplaintDate: "18-04-2023",
-      Description: "Test message3",
-      Status: "completed",
-    },
-  ];
+  const { isLoggedIn, loggedInUserEmail } = useContext(AuthContext);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/api/complaints", {
+        method: "GET",
+      });
+      if (!response.ok) {
+        throw new Error("Error fetching datad");
+      }
+      const responseData = await response.json();
+      console.log(responseData);
+      const filteredData = responseData.complaints.filter(
+        (complaint) => complaint.Email === loggedInUserEmail
+      );
+      setData(filteredData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   return (
     <div>
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} />
       <div className="flex gap-6 flex-row">
         <div>
           <Sidebar />

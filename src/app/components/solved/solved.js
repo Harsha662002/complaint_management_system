@@ -37,9 +37,6 @@ const Solved = (props) => {
             <th className="hidden text-center sm:table-cell border p-2 border-solid border-black">
               ID
             </th>
-            <th className="hidden text-center sm:table-cell border p-2 border-solid border-black">
-              Name
-            </th>
             <th className="text-center border p-2 border-solid border-black">
               Subject
             </th>
@@ -55,40 +52,41 @@ const Solved = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.data.map((complaint) => (
-            <tr
-              key={complaint.id}
-              className={`hover:bg-gray-100 ${
-                selectedRow === complaint.id ? "bg-gray-200" : ""
-              }`}
-              onClick={() => setSelectedRow(complaint.id)}
-            >
-              <td className="hidden text-center sm:table-cell border p-2 border-solid border-black">
-                {complaint.id}
-              </td>
-              <td className="hidden text-center sm:table-cell border p-2 border-solid border-black">
-                {complaint.Name}
-              </td>
-              <td className="text-center border p-2 border-solid border-black">
-                {complaint.Subject}
-              </td>
-              <td className="hidden text-center md:table-cell border p-2 border-solid border-black">
-                {complaint.Type}
-              </td>
-              <td className="hidden text-center md:table-cell border p-2 border-solid border-black">
-                {complaint.ComplaintDate}
-              </td>
-              <td className="text-center border p-2 border-solid border-black">
-                <button
-                  className="text-black"
-                  style={{ textDecoration: "none" }}
-                  onClick={() => handleModalWindow(complaint)}
-                >
-                  Details
-                </button>
-              </td>
-            </tr>
-          ))}
+          {props.data
+            .filter((complaint) => complaint.Status === "completed")
+            .map((complaint) => (
+              <tr
+                key={complaint.id}
+                className={`hover:bg-gray-100 ${
+                  selectedRow === complaint.id ? "bg-gray-200" : ""
+                }`}
+                onClick={() => setSelectedRow(complaint.id)}
+              >
+                {/* Render the table cells for the filtered data */}
+                <td className="hidden text-center sm:table-cell border p-2 border-solid border-black">
+                  {complaint.id}
+                </td>
+
+                <td className="text-center border p-2 border-solid border-black">
+                  {complaint.subject}
+                </td>
+                <td className="hidden text-center md:table-cell border p-2 border-solid border-black">
+                  {complaint.type}
+                </td>
+                <td className="hidden text-center md:table-cell border p-2 border-solid border-black">
+                  {complaint.ComplaintDate}
+                </td>
+                <td className="text-center border p-2 border-solid border-black">
+                  <button
+                    className="text-black"
+                    style={{ textDecoration: "none" }}
+                    onClick={() => handleModalWindow(complaint)}
+                  >
+                    Details
+                  </button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
 
