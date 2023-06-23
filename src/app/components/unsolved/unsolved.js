@@ -57,45 +57,47 @@ const Unsolved = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.data.map((complaint) => (
-            <tr
-              key={complaint.id}
-              className={`hover:bg-gray-100 ${
-                selectedRow === complaint.id ? "bg-gray-200" : ""
-              }`}
-              onClick={() => setSelectedRow(complaint.id)}
-            >
-              <td className="hidden text-center sm:table-cell border p-2 border-solid border-black">
-                {complaint.id}
-              </td>
+          {props.data
+            .filter((complaint) => complaint.Status !== "completed")
+            .map((complaint) => (
+              <tr
+                key={complaint.id}
+                className={`hover:bg-gray-100 ${
+                  selectedRow === complaint.id ? "bg-gray-200" : ""
+                }`}
+                onClick={() => setSelectedRow(complaint.id)}
+              >
+                <td className="hidden text-center sm:table-cell border p-2 border-solid border-black">
+                  {complaint.id}
+                </td>
 
-              <td className="text-center border p-2 border-solid border-black">
-                {complaint.subject}
-              </td>
-              <td className="hidden text-center md:table-cell border p-2 border-solid border-black">
-                {complaint.type}
-              </td>
-              <td className="hidden text-center md:table-cell border p-2 border-solid border-black">
-                {complaint.ComplaintDate}
-              </td>
-              <td className="text-center border p-2 border-solid border-black">
-                <button
-                  className="text-black"
-                  style={{ textDecoration: "none" }}
-                  onClick={() => handleModalWindow(complaint)}
-                >
-                  Details
-                </button>
-              </td>
-              <td className="flex justify-center border p-2 border-solid border-black">
-                <div
-                  className={`w-full ${
-                    !selectedRow ? "h-16 md:h-16  lg:h-8" : "h-8"
-                  }  text-center  ${getStatusColor(complaint.Status)}`}
-                ></div>
-              </td>
-            </tr>
-          ))}
+                <td className="text-center border p-2 border-solid border-black">
+                  {complaint.subject}
+                </td>
+                <td className="hidden text-center md:table-cell border p-2 border-solid border-black">
+                  {complaint.type}
+                </td>
+                <td className="hidden text-center md:table-cell border p-2 border-solid border-black">
+                  {complaint.ComplaintDate}
+                </td>
+                <td className="text-center border p-2 border-solid border-black">
+                  <button
+                    className="text-black"
+                    style={{ textDecoration: "none" }}
+                    onClick={() => handleModalWindow(complaint)}
+                  >
+                    Details
+                  </button>
+                </td>
+                <td className="flex justify-center border p-2 border-solid border-black">
+                  <div
+                    className={`w-full ${
+                      !selectedRow ? "h-16 md:h-16  lg:h-8" : "h-8"
+                    }  text-center  ${getStatusColor(complaint.Status)}`}
+                  ></div>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
 

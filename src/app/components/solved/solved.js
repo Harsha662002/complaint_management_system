@@ -14,18 +14,6 @@ const Solved = (props) => {
     setSelectedComplaint(null);
   };
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case "completed":
-        return "bg-green-500";
-      case "pending":
-        return "bg-orange-500";
-      case "rejected":
-        return "bg-red-500";
-      default:
-        return "";
-    }
-  };
   return (
     <div>
       <h2 className="mt-8 font-semibold text-2xl sm:text-4xl">
