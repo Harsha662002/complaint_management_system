@@ -22,6 +22,8 @@ const Unsolved = (props) => {
         return "bg-orange-500";
       case "rejected":
         return "bg-red-500";
+      case "assigned":
+        return "bg-yellow-500";
       default:
         return "";
     }
@@ -35,9 +37,9 @@ const Unsolved = (props) => {
       <table className="mt-8 w-full">
         <thead className="bg-gray-200">
           <tr>
-            <th className="hidden text-center sm:table-cell border p-2 border-solid border-black">
+            {/* <th className="hidden text-center sm:table-cell border p-2 border-solid border-black">
               ID
-            </th>
+            </th> */}
 
             <th className="text-center border p-2 border-solid border-black">
               Subject
@@ -67,15 +69,15 @@ const Unsolved = (props) => {
                 }`}
                 onClick={() => setSelectedRow(complaint.id)}
               >
-                <td className="hidden text-center sm:table-cell border p-2 border-solid border-black">
+                {/* <td className="hidden text-center sm:table-cell border p-2 border-solid border-black">
                   {complaint.id}
-                </td>
+                </td> */}
 
                 <td className="text-center border p-2 border-solid border-black">
-                  {complaint.subject}
+                  {complaint.Subject}
                 </td>
                 <td className="hidden text-center md:table-cell border p-2 border-solid border-black">
-                  {complaint.type}
+                  {complaint.Type}
                 </td>
                 <td className="hidden text-center md:table-cell border p-2 border-solid border-black">
                   {complaint.ComplaintDate}
@@ -103,6 +105,7 @@ const Unsolved = (props) => {
 
       {selectedComplaint && (
         <Complaintmodal
+          complaintState="unsolved"
           complaint={selectedComplaint}
           onClose={handleCloseModal}
         />

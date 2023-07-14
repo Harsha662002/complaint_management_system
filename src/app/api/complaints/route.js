@@ -28,9 +28,9 @@ export async function POST(request, response) {
     const Email = formData["Email"];
     const ComplaintDate = formData["ComplaintDate"];
     const Status = formData["Status"];
-    const subject = formData["subject"];
-    const type = formData["type"];
-    const description = formData["description"];
+    const Subject = formData["Subject"];
+    const Type = formData["Type"];
+    const Description = formData["Description"];
 
     console.log(
       "DATA",
@@ -38,18 +38,18 @@ export async function POST(request, response) {
       Email,
       ComplaintDate,
       Status,
-      subject,
-      type,
-      description
+      Subject,
+      Type,
+      Description
     );
 
     if (
       !Email ||
       !ComplaintDate ||
       !Status ||
-      !subject ||
-      !type ||
-      !description
+      !Subject ||
+      !Type ||
+      !Description
     ) {
       return NextResponse.json(
         { message: "Missing required fields" },
@@ -66,9 +66,9 @@ export async function POST(request, response) {
       Email,
       ComplaintDate,
       Status,
-      subject,
-      type,
-      description,
+      Subject,
+      Type,
+      Description,
     };
     const result = await complaintCollection.insertOne(newComplaint);
     //console.log("res", result);

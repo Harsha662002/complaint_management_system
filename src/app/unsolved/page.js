@@ -12,19 +12,36 @@ const Unsolvedpage = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
   const fetchData = async () => {
     try {
-      const response = await fetch("/api/complaints", {
+      const complaintsResponse = await fetch("/api/complaints", {
         method: "GET",
       });
-      if (!response.ok) {
-        throw new Error("Error fetching datad");
+      if (!complaintsResponse.ok) {
+        throw new Error("Error fetching complaints");
       }
-      const responseData = await response.json();
-      console.log(responseData);
-      const filteredData = responseData.complaints.filter(
+      const complaintsData = await complaintsResponse.json();
+      console.log(complaintsData);
+
+      const assignedResponse = await fetch("/api/assigned", {
+        method: "GET",
+      });
+      if (!assignedResponse.ok) {
+        throw new Error("Error fetching assigned complaints");
+      }
+      const assignedData = await assignedResponse.json();
+      console.log("assigned data", assignedData.assignedComplaints);
+
+      const combinedData = [
+        ...complaintsData.complaints,
+        ...assignedData.assignedComplaints,
+      ];
+      const filteredData = combinedData.filter(
         (complaint) => complaint.Email === loggedInUserEmail
       );
+
+      console.log("filtered", filteredData);
       setData(filteredData);
     } catch (error) {
       console.error("Error fetching data:", error);

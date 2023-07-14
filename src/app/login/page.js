@@ -15,11 +15,12 @@ const Loginpage = () => {
           <div className="p-4 sm:p-0 md:p-2">
             <Usercards
               image="admin.jpg"
-              imageName="Admin"
+              imageName="Staff"
               buttonColor="bg-red-500"
-              login="/loginadmin"
+              login="/staffLogin"
             />
           </div>
+
           <div className="p-4 sm:p-0 md:p-2">
             <Usercards
               image="employeeuser.png"
@@ -44,3 +45,11 @@ const Loginpage = () => {
 };
 
 export default Loginpage;
+// import React from "react";
+// import EmployeeLogin from "../components/loginemp/employeelogin";
+
+// const Login = () => {
+//   return <EmployeeLogin />;
+// };
+
+// export default Login;

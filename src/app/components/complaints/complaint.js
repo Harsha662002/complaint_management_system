@@ -3,9 +3,9 @@ import React, { useState, useContext } from "react";
 import { AuthContext } from "@/app/contexts/authcontext";
 
 const Complaint = () => {
-  const [subject, setSubject] = useState("");
-  const [type, setType] = useState("");
-  const [description, setDescription] = useState("");
+  const [Subject, setSubject] = useState("");
+  const [Type, setType] = useState("");
+  const [Description, setDescription] = useState("");
   const { loggedInUserEmail } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
@@ -19,9 +19,9 @@ const Complaint = () => {
       Email,
       ComplaintDate: currentDate,
       Status: "pending",
-      subject,
-      type,
-      description,
+      Subject,
+      Type,
+      Description,
     };
 
     try {
@@ -37,11 +37,12 @@ const Complaint = () => {
         setSubject("");
         setType("");
         setDescription("");
-        console.log("Complaint submitted successfully!");
+        alert("Complaint submitted successfully!");
       } else {
-        console.error("Failed to submit complaint.");
+        alert("Failed to submit complaint.");
       }
     } catch (error) {
+      alert("Error submitting complaint, check console!!");
       console.error("Error submitting complaint:", error);
     }
   };
@@ -53,25 +54,25 @@ const Complaint = () => {
       </h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="subject" className="block font-medium">
+          <label htmlFor="Subject" className="block font-medium">
             Subject*
           </label>
           <input
             type="text"
-            id="subject"
-            value={subject}
+            id="Subject"
+            value={Subject}
             onChange={(e) => setSubject(e.target.value)}
             className="w-full px-3 py-2 border rounded-md"
             required
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="type" className="block font-medium">
+          <label htmlFor="Type" className="block font-medium">
             Type*
           </label>
           <select
-            id="type"
-            value={type}
+            id="Type"
+            value={Type}
             onChange={(e) => setType(e.target.value)}
             className="w-full px-3 py-2 border rounded-md"
             required
@@ -79,16 +80,17 @@ const Complaint = () => {
             <option value="">Select type of Complaint</option>
             <option value="Sales">Sales</option>
             <option value="Accounting">Accounting</option>
-            <option value="Others">Others</option>
+            <option value="IT">IT</option>
+            <option value="Misc">Misc</option>
           </select>
         </div>
         <div className="mb-4">
-          <label htmlFor="description" className="block font-medium">
+          <label htmlFor="Description" className="block font-medium">
             Description*
           </label>
           <textarea
-            id="description"
-            value={description}
+            id="Description"
+            value={Description}
             onChange={(e) => setDescription(e.target.value)}
             className="w-full px-3 py-2 border rounded-md"
             rows="3"

@@ -14,15 +14,15 @@ const Solvedpage = () => {
   }, []);
   const fetchData = async () => {
     try {
-      const response = await fetch("/api/complaints", {
+      const response = await fetch("/api/solved", {
         method: "GET",
       });
       if (!response.ok) {
-        throw new Error("Error fetching datad");
+        throw new Error("Error fetching data");
       }
       const responseData = await response.json();
-      console.log(responseData);
-      const filteredData = responseData.complaints.filter(
+      console.log("response Data", responseData.solvedComplaints);
+      const filteredData = responseData.solvedComplaints.filter(
         (complaint) => complaint.Email === loggedInUserEmail
       );
       setData(filteredData);
@@ -30,6 +30,8 @@ const Solvedpage = () => {
       console.error("Error fetching data:", error);
     }
   };
+
+  console.log("DATA", data);
   return (
     <div>
       <Navbar isLoggedIn={isLoggedIn} />
