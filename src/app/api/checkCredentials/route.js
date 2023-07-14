@@ -25,7 +25,12 @@ export async function POST(req, response) {
     console.log("Password", password);
     const client = await connectToDatabase();
     const db = client.db();
-    const usersCollection = db.collection("users");
+    let usersCollection = "";
+    if (email === "admin@admin.com") {
+      usersCollection = db.collection("admin");
+    } else {
+      usersCollection = db.collection("users");
+    }
     const user = await usersCollection.findOne({ email });
     if (!user || user.password !== password) {
       return NextResponse.json({ success: false }, { status: 401 });

@@ -1,14 +1,17 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { BsPersonFill, BsListTask } from "react-icons/bs";
 import { AiOutlineForm } from "react-icons/ai";
 import { FaCheckCircle } from "react-icons/fa";
+import { MdAssignmentAdd } from "react-icons/md";
+import { AuthContext } from "@/app/contexts/authcontext";
 
 const Sidebar = () => {
+  const { loggedInUserEmail } = useContext(AuthContext);
   const menuItems = [
     { name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
     { name: "Add Complaint", link: "/complaints", icon: AiOutlineForm },
@@ -42,6 +45,24 @@ const Sidebar = () => {
     };
   }, []);
 
+  const filteredMenuItems =
+    loggedInUserEmail === "admin@admin.com"
+      ? [
+          {
+            name: "Dashboard",
+            link: "/admin_dashboard",
+            icon: MdOutlineDashboard,
+          },
+          {
+            name: "Unsolved Complaints",
+            link: "/admin_unsolved",
+            icon: BsListTask,
+          },
+          { name: "Assigned", link: "/assigned", icon: MdAssignmentAdd },
+          { name: "Logout", link: "/", icon: FiLogOut },
+        ]
+      : menuItems;
+
   return (
     <div
       className={`bg-[#0e0e0e] min-h-screen ${
@@ -58,7 +79,7 @@ const Sidebar = () => {
         />
       </div>
       <div className="mt-4 flex flex-col gap-4 relative">
-        {menuItems.map((item, i) => (
+        {filteredMenuItems.map((item, i) => (
           <Link
             href={item.link}
             key={i}

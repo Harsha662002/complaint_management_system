@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { HiOutlineMail, HiOutlineLockClosed } from "react-icons/hi";
@@ -10,7 +10,12 @@ const EmployeeLogin = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLoggedIn, setLoggedInUserEmail } = useContext(AuthContext);
+  const { setIsLoggedIn, loggedInUserEmail, setLoggedInUserEmail } =
+    useContext(AuthContext);
+
+  useEffect(() => {
+    console.log("loggedInUserEmail", loggedInUserEmail);
+  }, [loggedInUserEmail]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -29,11 +34,13 @@ const EmployeeLogin = () => {
     // console.log(data.body);
 
     if (data.success) {
-      // setIsLoggedIn(true);
-      // window.location.href = "/dashboard";
       setIsLoggedIn(true);
       setLoggedInUserEmail(email);
-      router.push("/dashboard");
+      if (loggedInUserEmail === "admin@admin.com") {
+        router.push("/admin_dashboard");
+      } else {
+        router.push("/dashboard");
+      }
     } else {
       console.log("Invalid credentials");
     }
@@ -43,7 +50,7 @@ const EmployeeLogin = () => {
     <div className="relative flex justify-center items-center min-h-screen bg-gray-100">
       <svg
         className="absolute top-0 left-0"
-        viewBox="0 0 600 100"
+        viewBox="0 0 1000 100"
         xmlns="http://www.w3.org/2000/svg"
         style={{
           transform: "rotateX(180deg) rotateY(0deg) ",
@@ -54,7 +61,7 @@ const EmployeeLogin = () => {
 
       <svg
         className="absolute bottom-0 right-0"
-        viewBox="0 0 600 100"
+        viewBox="0 0 1000 100"
         xmlns="http://www.w3.org/2000/svg"
         style={{
           transform: "rotateX(0deg) rotateY(180deg) translateX(30px)",
@@ -63,7 +70,10 @@ const EmployeeLogin = () => {
         <path d="M0 0A100 100 0 0 1 100 100H0V0Z" fill="#3490DC" />
       </svg>
 
-      <div className="w-3/4 h-2/3 rounded-lg shadow-lg bg-white flex flex-row">
+      <div
+        className="w-3/4 h-2/3 rounded-lg shadow-lg bg-white flex flex-row"
+        style={{ zIndex: 999 }}
+      >
         <div className="w-1/2 flex flex-col justify-center items-center border border-blue">
           <div className="flex items-center justify-center">
             <Image
@@ -127,6 +137,13 @@ const EmployeeLogin = () => {
               height={25}
             />
           </button>
+          <h2 className="mt-3 text-center">
+            Don&apos;t have an account?{" "}
+            <Link href="/register" className="text-2xl text-blue-500">
+              Register
+            </Link>{" "}
+            Now!
+          </h2>
         </div>
       </div>
     </div>

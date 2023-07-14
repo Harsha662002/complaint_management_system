@@ -47,13 +47,13 @@ const Dashboard = (props) => {
   chartData.forEach((item) => {
     const dateParts = item.ComplaintDate.split("/");
     const month = parseInt(dateParts[1]);
-    const status = item.Status;
+    const Status = item.Status;
 
     if (months[month]) {
-      months[month][status]++;
+      months[month][Status]++;
     } else {
       months[month] = { month, completed: 0, pending: 0, rejected: 0 };
-      months[month][status]++;
+      months[month][Status]++;
     }
   });
 
