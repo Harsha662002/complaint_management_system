@@ -66,7 +66,7 @@ const Sidebar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  let filteredMenuItems;
+  let filteredMenuItems = employeeMenuItems;
 
   if (loggedInUserEmail === "admin@admin.com") {
     filteredMenuItems = adminMenuItems;
