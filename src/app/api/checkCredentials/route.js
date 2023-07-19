@@ -20,16 +20,21 @@ export async function GET(req, res) {
 
 export async function POST(req, response) {
   try {
-    const { email, password } = await req.json();
-    console.log("EMail", email);
-    console.log("Password", password);
+    const { email, password, userType } = await req.json();
+    // console.log("EMail", email);
+    // console.log("Password", password);
+    // console.log("userType", userType);
     const client = await connectToDatabase();
     const db = client.db();
     let usersCollection = "";
     if (email === "admin@admin.com") {
       usersCollection = db.collection("admin");
     } else {
-      usersCollection = db.collection("users");
+      if (userType === "employee") {
+        usersCollection = db.collection("users");
+      } else if (userType === "staff") {
+        usersCollection = db.collection("staff");
+      }
     }
     const user = await usersCollection.findOne({ email });
     if (!user || user.password !== password) {

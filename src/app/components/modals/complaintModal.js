@@ -19,7 +19,10 @@ const Complaintmodal = (props) => {
           <p>ComplaintDate: {props.complaint.ComplaintDate}</p>
           <p>Description: {props.complaint.Description}</p>
           {props.complaintState === "solved" && (
-            <p>Comment: {props.complaint.comment}</p>
+            <p>Comment: {props.complaint.Comment}</p>
+          )}
+          {props.complaintState === "solved" && (
+            <p>Solved By: {props.complaint.StaffSolved}</p>
           )}
           <div className="mt-6">
             <button

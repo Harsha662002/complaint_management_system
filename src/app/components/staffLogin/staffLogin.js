@@ -6,7 +6,7 @@ import { HiOutlineMail, HiOutlineLockClosed } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/app/contexts/authcontext";
 
-const EmployeeLogin = () => {
+const StaffLogin = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +20,8 @@ const EmployeeLogin = () => {
 
   useEffect(() => {
     console.log("loggedInUserEmail", loggedInUserEmail);
-    setUserType("employee");
+    setUserType("staff");
+    //console.log("CCC", loggedInUserEmail === "admin@admin.com");
     if (loggedInUserEmail === "admin@admin.com") {
       router.push("/admin_dashboard");
     }
@@ -29,7 +30,7 @@ const EmployeeLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    //console.log("USER TYPE", userType);
+    // console.log("USER TYPE", userType);
     const response = await fetch("/api/checkCredentials", {
       method: "POST",
       headers: {
@@ -45,11 +46,13 @@ const EmployeeLogin = () => {
     if (data.success) {
       setIsLoggedIn(true);
       setLoggedInUserEmail(email);
+      router.push("/staff_dashboard");
+      // console.log("CCC", loggedInUserEmail === "admin@admin.com");
       // if (loggedInUserEmail === "admin@admin.com") {
       //   router.push("/admin_dashboard");
       // } else {
-      router.push("/dashboard");
-      //}
+      //   router.push("/staff_dashboard");
+      // }
     } else {
       console.log("Invalid credentials");
     }
@@ -84,11 +87,11 @@ const EmployeeLogin = () => {
         style={{ zIndex: 999 }}
       >
         <div className="sm:w-4 md:w-96 lg:w-1/2 flex flex-col justify-center mx-auto items-center border border-blue">
-          <div className="flex items-center justify-center ">
+          <div className="flex items-center justify-center">
             <Image
               src="/assests/images/1.png"
               alt="Login"
-              width={600}
+              width={500}
               height={400}
             />
           </div>
@@ -159,4 +162,4 @@ const EmployeeLogin = () => {
   );
 };
 
-export default EmployeeLogin;
+export default StaffLogin;
