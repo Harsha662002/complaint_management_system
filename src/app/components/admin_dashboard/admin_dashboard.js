@@ -78,44 +78,44 @@ const AdminDashboard = () => {
   }, [selectedType]);
 
   return (
-    <div>
-      <div className="flex justify-between mt-10">
-        <div className="w-1/3 text-center">
+    <div className="mx-4 md:mx-8 lg:mx-16 xl:mx-24">
+      <div className="flex flex-col md:flex-row justify-between mt-10">
+        <div className="w-full md:w-1/3 text-center mb-8 md:mb-0">
           <h2 className="text-3xl font-bold mb-8">Total Complaints</h2>
           <div
-            className="text-7xl font-bold counter text-blue-500"
+            className="text-5xl md:text-7xl font-bold counter text-blue-500"
             data-target={totalComplaints}
           >
-            {totalComplaints}
+            {solvedComplaints + unsolvedComplaints}
           </div>
         </div>
-        <div className="w-1/3 text-center">
+        <div className="w-full md:w-1/3 text-center mb-8 md:mb-0">
           <h2 className="text-3xl font-bold mb-8">Solved Complaints</h2>
           <div
-            className="text-7xl font-bold counter text-blue-500"
+            className="text-5xl md:text-7xl font-bold counter text-blue-500"
             data-target={solvedComplaints}
           >
             {solvedComplaints}
           </div>
         </div>
-        <div className="w-1/3 text-center">
+        <div className="w-full md:w-1/3 text-center">
           <h2 className="text-3xl font-bold mb-8">Unsolved Complaints</h2>
           <div
-            className="text-7xl font-bold counter text-blue-500"
+            className="text-5xl md:text-7xl font-bold counter text-blue-500"
             data-target={unsolvedComplaints}
           >
             {unsolvedComplaints}
           </div>
         </div>
       </div>
-      <div className="flex items-center mt-16">
-        <hr className="w-1/6 border-t-2 border-blue-300 mt-1" />
-        <span className="px-4 text-4xl text-blue-700 font-semibold flex items-center">
+      <div className="flex items-center mt-8 md:mt-16">
+        <hr className="w-1/4 md:w-1/6 border-t-2 border-blue-300 mt-1" />
+        <span className="px-4 text-2xl md:text-4xl text-blue-700 font-semibold flex items-center">
           STATISTICS
         </span>
-        <hr className="flex-grow border-t-2 border-blue-300" />
+        <hr className="flex-grow w-1/4 md:w-full border-t-2 border-blue-300" />
       </div>
-      <div className="flex items-center justify-end mt-4 pr-4">
+      <div className="flex items-center justify-end mt-4 md:mt-8 pr-4">
         <select
           className={dropdownClass}
           onClick={handleDropdownClick}
@@ -130,29 +130,29 @@ const AdminDashboard = () => {
           <option value="Misc">Misc</option>
         </select>
       </div>
-      <div className="flex justify-between mt-10">
-        <div className="w-1/3 text-center">
+      <div className="flex flex-col md:flex-row justify-between mt-10">
+        <div className="w-full md:w-1/3 text-center mb-8 md:mb-0">
           <h2 className="text-3xl font-bold mb-8">Total Complaints</h2>
           <div
-            className="text-7xl font-bold counter text-blue-500"
+            className="text-5xl md:text-7xl font-bold counter text-blue-500"
             data-target={totalSelectedComplaints}
           >
-            {totalSelectedComplaints}
+            {solvedSelectedComplaints + unsolvedSelectedComplaints}
           </div>
         </div>
-        <div className="w-1/3 text-center">
+        <div className="w-full md:w-1/3 text-center mb-8 md:mb-0">
           <h2 className="text-3xl font-bold mb-8">Solved Complaints</h2>
           <div
-            className="text-7xl font-bold counter text-blue-500"
+            className="text-5xl md:text-7xl font-bold counter text-blue-500"
             data-target={solvedSelectedComplaints}
           >
             {solvedSelectedComplaints}
           </div>
         </div>
-        <div className="w-1/3 text-center">
+        <div className="w-full md:w-1/3 text-center">
           <h2 className="text-3xl font-bold mb-8">Unsolved Complaints</h2>
           <div
-            className="text-7xl font-bold counter text-blue-500"
+            className="text-5xl md:text-7xl font-bold counter text-blue-500"
             data-target={unsolvedSelectedComplaints}
           >
             {unsolvedSelectedComplaints}

@@ -13,10 +13,11 @@ export async function POST(request, response) {
 
     const client = await connectToDatabase();
     const db = client.db();
-    const complaintsCollection = db.collection("complaints");
+
+    const assignedCollection = db.collection("assigned");
     const solvedCollection = db.collection("solved");
 
-    const updateResult = await complaintsCollection.updateOne(
+    const updateResult = await assignedCollection.updateOne(
       { id },
       { $set: { Status: Status } }
     );
@@ -39,7 +40,7 @@ export async function POST(request, response) {
       );
     }
 
-    const deleteResult = await complaintsCollection.deleteOne({ id });
+    const deleteResult = await assignedCollection.deleteOne({ id });
     if (deleteResult.deletedCount === 0) {
       return NextResponse.json(
         {
@@ -48,19 +49,12 @@ export async function POST(request, response) {
         { status: 400 }
       );
     }
-
     return NextResponse.json(
       {
         message:
-          "Status updated, complaint moved to the solved collection, and complaint removed from the complaints collection",
+          "Status updated, complaint moved to the solved collection, and complaint removed from the assigned collection",
       },
       { status: 200 }
     );
-  } catch (e) {
-    console.error(e);
-    return NextResponse.json(
-      { message: "Error updating Status" },
-      { status: 500 }
-    );
-  }
+  } catch (e) {}
 }

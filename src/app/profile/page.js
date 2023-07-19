@@ -63,33 +63,31 @@ const ProfilePage = () => {
   const [data, setData] = useState([]);
   const router = useRouter();
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.push("/login"); // Redirect to login page if not logged in
-    } else {
-      fetchData();
-    }
-  }, [isLoggedIn]);
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await fetch("/api/checkCredentials", {
+  //       method: "GET",
+  //     });
+  //     if (!response.ok) {
+  //       throw new Error("Error fetching data");
+  //     }
+  //     const responseData = await response.json();
+  //     console.log("responseData", responseData);
+  //     const filteredData = responseData.user.filter(
+  //       (u) => u.email === loggedInUserEmail
+  //     );
+  //     setData(filteredData);
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch("/api/checkCredentials", {
-        method: "GET",
-      });
-      if (!response.ok) {
-        throw new Error("Error fetching data");
-      }
-      const responseData = await response.json();
-      const filteredData = responseData.user.filter(
-        (u) => u.email === loggedInUserEmail
-      );
-      setData(filteredData);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  console.log("isLoggedIn", isLoggedIn);
+  // console.log("isLoggedIn", isLoggedIn);
+  // console.log("DATATA", data);
   return (
     <div>
       <Navbar isLoggedIn={isLoggedIn} />
@@ -98,7 +96,7 @@ const ProfilePage = () => {
           <Sidebar />
         </div>
         <div className="text-xl w-screen h-1/2">
-          <Profile data={data[0]} />
+          <Profile />
         </div>
       </div>
     </div>

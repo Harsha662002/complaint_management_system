@@ -23,8 +23,9 @@ export async function POST(req, res) {
     const { complaint, selectedEmployee } = await req.json();
     console.log("IN route  complaint", complaint);
     console.log("IN route  selectedEmployee", selectedEmployee);
-    const EmployeeName = selectedEmployee.name;
-    const id = complaint._id;
+    const EmployeeEmail = selectedEmployee.email;
+    const id = complaint.id;
+    const idd = complaint._id;
     const ComplaintDate = complaint.ComplaintDate;
     const Status = "assigned";
     const Email = complaint.Email;
@@ -34,17 +35,33 @@ export async function POST(req, res) {
     const client = await connectToDatabase();
     const db = client.db();
     const assignCollection = db.collection("assigned");
+    const complaintsCollection = db.collection("complaints");
     const newAssignment = {
-      id,
+      id: idd,
       ComplaintDate,
       Status,
       Email,
       Subject,
       Type,
       Description,
-      EmployeeName,
+      EmployeeEmail,
     };
+
+    console.log("EEEE");
+    const deleteResult = await complaintsCollection.deleteOne({ id });
+    if (deleteResult.deletedCount === 0) {
+      return NextResponse.json(
+        {
+          message: "Failed to remove complaint from the complaints collection",
+        },
+        { status: 400 }
+      );
+    }
+
     const result = await assignCollection.insertOne(newAssignment);
+
+    console.log("EEEE2");
+
     return NextResponse.json(
       { message: "Assigned Complaint successfully", user: newAssignment },
       { status: 201 }

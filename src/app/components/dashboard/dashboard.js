@@ -124,8 +124,8 @@ const Dashboard = (props) => {
         </select>
       </div>
       <div className="flex justify-center items-center">
-        <div className="w-2/3">
-          <div className="flex justify-center items-center h-full">
+        <div className="w-full md:w-2/3 lg:w-1/2 xl:w-1/3 h-full">
+          <div className="flex justify-center items-center">
             <Bar data={chartDataConfig} options={chartOptions} />
           </div>
         </div>

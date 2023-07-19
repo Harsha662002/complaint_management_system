@@ -98,7 +98,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="mt-8 ml-8">
+    <div className="mt-8 mx-4 md:mx-8 lg:mx-16 xl:mx-24">
       <h2 className="text-3xl font-bold text-blue-500 mb-8">
         Forgot your Password?
       </h2>

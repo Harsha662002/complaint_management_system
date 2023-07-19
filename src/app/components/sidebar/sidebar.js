@@ -11,14 +11,36 @@ import { MdAssignmentAdd } from "react-icons/md";
 import { AuthContext } from "@/app/contexts/authcontext";
 
 const Sidebar = () => {
-  const { loggedInUserEmail } = useContext(AuthContext);
-  const menuItems = [
+  const { loggedInUserEmail, userType } = useContext(AuthContext);
+  const employeeMenuItems = [
     { name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
     { name: "Add Complaint", link: "/complaints", icon: AiOutlineForm },
     { name: "Unsolved Complaints", link: "/unsolved", icon: BsListTask },
     { name: "Solved Complaints", link: "/solved", icon: FaCheckCircle },
     { name: "Profile", link: "/profile", icon: BsPersonFill },
+    { name: "Logout", link: "/", icon: FiLogOut },
+  ];
 
+  const staffMenuItems = [
+    { name: "Dashboard", link: "/staff_dashboard", icon: MdOutlineDashboard },
+    { name: "Unsolved Complaints", link: "/staff_unsolved", icon: BsListTask },
+    { name: "Solved Complaints", link: "/staff_solved", icon: FaCheckCircle },
+    { name: "Profile", link: "/staff_profile", icon: BsPersonFill },
+    { name: "Logout", link: "/", icon: FiLogOut },
+  ];
+
+  const adminMenuItems = [
+    {
+      name: "Dashboard",
+      link: "/admin_dashboard",
+      icon: MdOutlineDashboard,
+    },
+    {
+      name: "Unsolved Complaints",
+      link: "/admin_unsolved",
+      icon: BsListTask,
+    },
+    { name: "Assigned", link: "/assigned", icon: MdAssignmentAdd },
     { name: "Logout", link: "/", icon: FiLogOut },
   ];
 
@@ -44,24 +66,17 @@ const Sidebar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  let filteredMenuItems;
 
-  const filteredMenuItems =
-    loggedInUserEmail === "admin@admin.com"
-      ? [
-          {
-            name: "Dashboard",
-            link: "/admin_dashboard",
-            icon: MdOutlineDashboard,
-          },
-          {
-            name: "Unsolved Complaints",
-            link: "/admin_unsolved",
-            icon: BsListTask,
-          },
-          { name: "Assigned", link: "/assigned", icon: MdAssignmentAdd },
-          { name: "Logout", link: "/", icon: FiLogOut },
-        ]
-      : menuItems;
+  if (loggedInUserEmail === "admin@admin.com") {
+    filteredMenuItems = adminMenuItems;
+  } else {
+    if (userType === "staff") {
+      filteredMenuItems = staffMenuItems;
+    } else if (userType === "employee") {
+      filteredMenuItems = employeeMenuItems;
+    }
+  }
 
   return (
     <div
