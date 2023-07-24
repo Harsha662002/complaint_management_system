@@ -7,11 +7,6 @@ import { AuthContext } from "@/app/contexts/authcontext";
 const Profile = () => {
   const { isLoggedIn, loggedInUserEmail } = useContext(AuthContext);
   const [data, setData] = useState({});
-  // console.log("Props.data", props.data[0].email);
-  const encryptPassword = (password) => {
-    return password.replaceAll(/./g, "*");
-    //console.log("Hiii");
-  };
 
   const fetchData = async () => {
     try {
@@ -22,7 +17,7 @@ const Profile = () => {
         throw new Error("Error fetching data");
       }
       const responseData = await response.json();
-      console.log("responseData", responseData);
+      // console.log("responseData", responseData);
       const filteredData = responseData.user.find(
         (u) => u.email === loggedInUserEmail
       );
@@ -44,17 +39,14 @@ const Profile = () => {
       });
 
       if (response.ok) {
-        console.log("Photo removed");
+        alert("Photo removed");
       } else {
-        console.log("Photo not removed");
+        alert("Photo not removed");
       }
     } catch (error) {
       console.error("Error removing photo:", error);
     }
   };
-
-  console.log("isLoggedIn", isLoggedIn);
-  console.log("DATATA", data);
 
   return (
     <div className="flex">
@@ -137,7 +129,7 @@ const Profile = () => {
           </label>
           <div className="w-72 text-xl ml-2 items-center font-medium text-gray-600">
             <div className="bg-gray-200 w-full h-full px-2 py-1 rounded-md">
-              {encryptPassword(data.password)}
+              ******
             </div>
           </div>
           <div className="w-6 h-6 ml-4">

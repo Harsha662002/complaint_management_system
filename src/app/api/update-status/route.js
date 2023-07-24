@@ -5,11 +5,11 @@ export async function POST(request, response) {
   try {
     const { id, Status, complaint, solvedStaff, comment } =
       await request.json();
-    console.log("id", id);
-    console.log("status", Status);
-    console.log("Complaint", complaint);
-    console.log("solvedStaff", solvedStaff);
-    console.log("comment", comment);
+    // console.log("id", id);
+    // console.log("status", Status);
+    // console.log("Complaint", complaint);
+    // console.log("solvedStaff", solvedStaff);
+    // console.log("comment", comment);
 
     const client = await connectToDatabase();
     const db = client.db();

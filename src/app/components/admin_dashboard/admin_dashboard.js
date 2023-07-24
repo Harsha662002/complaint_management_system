@@ -38,14 +38,14 @@ const AdminDashboard = () => {
       if (response.ok) {
         const data = await response.json();
         const complaints = data.complaints;
-        console.log("complaints", complaints);
+        // console.log("complaints", complaints);
 
         setUnsolvedComplaints(complaints.length);
 
         const totalSelectedComplaints = complaints.filter(
           (complaint) => complaint.Type === selectedType
         );
-        console.log("totalSelectedComplaints", totalSelectedComplaints);
+        //console.log("totalSelectedComplaints", totalSelectedComplaints);
         setUnsolvedSelectedComplaints(totalSelectedComplaints.length);
       }
     } catch (error) {
@@ -60,13 +60,13 @@ const AdminDashboard = () => {
       if (response.ok) {
         const data = await response.json();
         const solvedComplaints = data.solvedComplaints;
-        console.log("solvedComplaints", solvedComplaints);
+        //console.log("solvedComplaints", solvedComplaints);
         setSolvedComplaints(solvedComplaints.length);
 
         const totalSelectedsolvedComplaints = solvedComplaints.filter(
           (complaint) => complaint.Type === selectedType
         );
-        console.log("totalSelectedComplaints", totalSelectedsolvedComplaints);
+        // console.log("totalSelectedComplaints", totalSelectedsolvedComplaints);
 
         setSolvedSelectedComplaints(totalSelectedsolvedComplaints.length);
       }

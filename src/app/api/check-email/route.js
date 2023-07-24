@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 export async function POST(req, response) {
   try {
     const { email, category } = await req.json();
-    console.log("EMail", email);
-    console.log("category", category);
+    //console.log("EMail", email);
+    //console.log("category", category);
     const client = await connectToDatabase();
     const db = client.db();
     let usersCollection;

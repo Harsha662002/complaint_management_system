@@ -142,7 +142,7 @@ const AdminUnsolved = () => {
       !assignedComplaints.find((assigned) => assigned.id === complaint._id)
   );
 
-  console.log("filteredComplaints", filteredComplaints);
+  //console.log("filteredComplaints", filteredComplaints);
 
   return (
     <div>

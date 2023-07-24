@@ -24,7 +24,7 @@ const StaffUnsolved = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("assigned Complaints", data.assignedComplaints);
+        // console.log("assigned Complaints", data.assignedComplaints);
         const filteredComplaints = data.assignedComplaints.filter(
           (complaint) => complaint.EmployeeEmail === loggedInUserEmail
         );
@@ -68,7 +68,7 @@ const StaffUnsolved = () => {
     try {
       // Check if there's a selected complaint
       //if (!selectedComplaint) return;
-      console.log("COMMENT WAS", comment);
+      // console.log("COMMENT WAS", comment);
       // Send the comment along with other data to the API route
       const response = await fetch("/api/update-assigned", {
         method: "POST",
@@ -194,8 +194,6 @@ const StaffUnsolved = () => {
       prevSelectedComplaint?.id === complaint.id ? null : complaint
     );
   };
-
-  console.log("selected Complaint", lastSelectedComplaint.current);
 
   return (
     <div>

@@ -28,7 +28,7 @@ const DashboardPage = () => {
         throw new Error("Error fetching datad");
       }
       const responseData = await response.json();
-      console.log(responseData);
+      //console.log(responseData);
       const filteredData = responseData.complaints.filter(
         (complaint) => complaint.Email === loggedInUserEmail
       );
@@ -47,7 +47,7 @@ const DashboardPage = () => {
         throw new Error("Error fetching datad");
       }
       const responseData = await response.json();
-      console.log(responseData);
+      //console.log(responseData);
       const filteredData = responseData.assignedComplaints.filter(
         (complaint) => complaint.Email === loggedInUserEmail
       );
@@ -66,7 +66,7 @@ const DashboardPage = () => {
         throw new Error("Error fetching datad");
       }
       const responseData = await response.json();
-      console.log(responseData);
+      // console.log(responseData);
       const filteredData = responseData.solvedComplaints.filter(
         (complaint) => complaint.Email === loggedInUserEmail
       );

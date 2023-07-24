@@ -7,7 +7,7 @@ export async function GET(req, res) {
     const db = client.db();
     const collection = db.collection("assigned");
     const data = await collection.find().toArray();
-    console.log(data);
+    //console.log(data);
     return NextResponse.json(
       {
         message: "Assigned Complaints fetched successfully",

@@ -19,7 +19,7 @@ const StaffLogin = () => {
   } = useContext(AuthContext);
 
   useEffect(() => {
-    console.log("loggedInUserEmail", loggedInUserEmail);
+    //console.log("loggedInUserEmail", loggedInUserEmail);
     setUserType("staff");
     //console.log("CCC", loggedInUserEmail === "admin@admin.com");
     if (loggedInUserEmail === "admin@admin.com") {
@@ -40,7 +40,7 @@ const StaffLogin = () => {
     });
 
     const data = await response.json();
-    console.log(data.success);
+    //console.log(data.success);
     // console.log(data.body);
 
     if (data.success) {

@@ -94,7 +94,7 @@ const StaffDashboard = () => {
     fetchSolvedComplaints();
     const combinedComplaints = { ...solvedComplaints, ...unsolvedComplaints };
     setTotalComplaints(combinedComplaints);
-    console.log("Totla", totalComplaints);
+    //console.log("Totla", totalComplaints);
   }, []);
 
   useEffect(() => {

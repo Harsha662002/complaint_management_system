@@ -19,7 +19,7 @@ const EmployeeLogin = () => {
   } = useContext(AuthContext);
 
   useEffect(() => {
-    console.log("loggedInUserEmail", loggedInUserEmail);
+    //console.log("loggedInUserEmail", loggedInUserEmail);
     setUserType("employee");
     if (loggedInUserEmail === "admin@admin.com") {
       router.push("/admin_dashboard");
@@ -39,7 +39,7 @@ const EmployeeLogin = () => {
     });
 
     const data = await response.json();
-    console.log(data.success);
+    // console.log(data.success);
     // console.log(data.body);
 
     if (data.success) {

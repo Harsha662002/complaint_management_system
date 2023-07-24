@@ -7,7 +7,7 @@ export async function GET(req, res) {
     const db = client.db();
     const collection = db.collection("users");
     const data = await collection.find().toArray();
-    console.log(data);
+    //console.log(data);
     return NextResponse.json(
       { message: "User fetched successfully", user: data },
       { status: 200 }

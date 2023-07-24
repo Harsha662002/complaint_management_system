@@ -7,7 +7,7 @@ export async function GET(req, res) {
     const db = client.db();
     const collection = db.collection("complaints");
     const data = await collection.find().toArray();
-    console.log(data);
+    //console.log(data);
     return NextResponse.json(
       { message: "Complaints fetched successfully", complaints: data },
       { status: 200 }
@@ -32,16 +32,16 @@ export async function POST(request, response) {
     const Type = formData["Type"];
     const Description = formData["Description"];
 
-    console.log(
-      "DATA",
-      id,
-      Email,
-      ComplaintDate,
-      Status,
-      Subject,
-      Type,
-      Description
-    );
+    // //console.log(
+    //   "DATA",
+    //   id,
+    //   Email,
+    //   ComplaintDate,
+    //   Status,
+    //   Subject,
+    //   Type,
+    //   Description
+    // );
 
     if (
       !Email ||

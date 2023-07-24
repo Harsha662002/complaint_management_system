@@ -21,7 +21,7 @@ const Solvedpage = () => {
         throw new Error("Error fetching data");
       }
       const responseData = await response.json();
-      console.log("response Data", responseData.solvedComplaints);
+      //console.log("response Data", responseData.solvedComplaints);
       const filteredData = responseData.solvedComplaints.filter(
         (complaint) => complaint.Email === loggedInUserEmail
       );
@@ -31,7 +31,7 @@ const Solvedpage = () => {
     }
   };
 
-  console.log("DATA", data);
+  //console.log("DATA", data);
   return (
     <div>
       <Navbar isLoggedIn={isLoggedIn} />
