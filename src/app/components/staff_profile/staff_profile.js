@@ -4,7 +4,7 @@ import Image from "next/image";
 import { FiEdit2 } from "react-icons/fi";
 import { AuthContext } from "@/app/contexts/authcontext";
 
-const Profile = () => {
+const StaffProfile = () => {
   const { isLoggedIn, loggedInUserEmail } = useContext(AuthContext);
   const [data, setData] = useState({});
   // console.log("Props.data", props.data[0].email);
@@ -15,7 +15,7 @@ const Profile = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/api/checkCredentials", {
+      const response = await fetch("/api/staff", {
         method: "GET",
       });
       if (!response.ok) {
@@ -23,10 +23,12 @@ const Profile = () => {
       }
       const responseData = await response.json();
       console.log("responseData", responseData);
-      const filteredData = responseData.user.find(
+      const filteredData = responseData.users.find(
         (u) => u.email === loggedInUserEmail
       );
       setData(filteredData);
+
+      console.log("FILTERED DATA", filteredData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -36,44 +38,44 @@ const Profile = () => {
     fetchData();
   }, []);
 
-  const handleRemovePhoto = async () => {
-    try {
-      const response = await fetch("/api/removephoto", {
-        method: "POST",
-        body: new FormData().append("email", data.email),
-      });
-
-      if (response.ok) {
-        console.log("Photo removed");
-      } else {
-        console.log("Photo not removed");
-      }
-    } catch (error) {
-      console.error("Error removing photo:", error);
-    }
-  };
-
-  console.log("isLoggedIn", isLoggedIn);
-  console.log("DATATA", data);
+  console.log("DATAA", data);
 
   return (
     <div className="flex">
       <div className="flex justify-center mt-32 flex-col mx-8 w-42 border-r border-black pr-4">
         <div className="bg-gray-300 w-48 h-48 mb-4">
-          <Image
-            src={data.image}
+          {/* <Image
+            src="/assests/images/1.png"
             alt="Selected File"
             className="object-cover w-full h-full"
             width={100}
             height={100}
-          />
+          /> */}
+
+          {data.image === "1" ? (
+            <Image
+              src=""
+              alt="No Profile Picture"
+              className="object-cover w-full h-full"
+              width={100}
+              height={100}
+            />
+          ) : (
+            <Image
+              src={data.image}
+              alt="Selected File"
+              className="object-cover w-full h-full"
+              width={100}
+              height={100}
+            />
+          )}
         </div>
         <button className="mt-4 bg-blue-500 text-white px-4 py-2">
           Edit Photo
         </button>
         <button
           className="mt-2 bg-red-500 text-white px-4 py-2"
-          onClick={handleRemovePhoto}
+          //   onClick={handleRemovePhoto}
         >
           Remove Photo
         </button>
@@ -149,4 +151,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default StaffProfile;
