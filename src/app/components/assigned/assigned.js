@@ -14,7 +14,7 @@ const Assigned = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("assigned data", data.assignedComplaints);
+        //console.log("assigned data", data.assignedComplaints);
         setAssignedComplaints(data.assignedComplaints);
       }
     } catch (error) {

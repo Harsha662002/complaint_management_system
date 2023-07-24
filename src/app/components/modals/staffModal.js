@@ -77,7 +77,7 @@ const StaffModal = (props) => {
 
   // console.log("Stafflist", staffList);
   // console.log("currentType", props.complaint);
-  console.log("selected", selectedEmployee);
+  // console.log("selected", selectedEmployee);
 
   return (
     <div

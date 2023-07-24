@@ -9,7 +9,7 @@ const ForgotPassword = () => {
 
   const handleSendOTP = async () => {
     try {
-      console.log("email", email);
+      //  console.log("email", email);
       // try {
       const emailCheckResponse = await fetch(
         "http://localhost:3000/api/check-email",
@@ -38,7 +38,7 @@ const ForgotPassword = () => {
         body: JSON.stringify({ email }),
       });
 
-      console.log("res", response);
+      //console.log("res", response);
 
       if (response.ok) {
         const data = await response.json();

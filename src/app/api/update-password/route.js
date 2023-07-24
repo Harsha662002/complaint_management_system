@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 export async function POST(request, response) {
   try {
     const { email, newPassword } = await request.json();
-    console.log("email", email);
-    console.log("password new", newPassword);
+    // console.log("email", email);
+    // console.log("password new", newPassword);
 
     const client = await connectToDatabase();
     const db = client.db();

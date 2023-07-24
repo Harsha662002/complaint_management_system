@@ -11,7 +11,7 @@ export async function POST(request, response) {
     const password = formData.get("password");
     const image = formData.get("image");
 
-    console.log("DATA", name, category, email, phone, password, image);
+    // console.log("DATA", name, category, email, phone, password, image);
 
     if (!name || !category || !email || !phone || !password) {
       return NextResponse.json(
@@ -56,7 +56,7 @@ export async function GET(req, res) {
     const db = client.db();
     const collection = db.collection("users");
     const data = await collection.find().toArray();
-    console.log(data);
+    // console.log(data);
     return NextResponse.json(
       { message: "Users fetched successfully", users: data },
       { status: 200 }

@@ -7,7 +7,7 @@ export async function GET(req, res) {
     const db = client.db();
     const collection = db.collection("solved");
     const data = await collection.find().toArray();
-    console.log(data);
+    // console.log(data);
     return NextResponse.json(
       {
         message: "Solved Complaints fetched successfully",

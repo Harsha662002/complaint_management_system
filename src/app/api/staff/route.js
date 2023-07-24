@@ -7,7 +7,7 @@ export async function GET(req, res) {
     const db = client.db();
     const collection = db.collection("staff");
     const data = await collection.find().toArray();
-    console.log(data);
+    // console.log(data);
     return NextResponse.json(
       { message: "Users fetched successfully", users: data },
       { status: 200 }
@@ -21,8 +21,8 @@ export async function GET(req, res) {
 export async function POST(req, res) {
   try {
     const { complaint, selectedEmployee } = await req.json();
-    console.log("IN route  complaint", complaint);
-    console.log("IN route  selectedEmployee", selectedEmployee);
+    // console.log("IN route  complaint", /complaint);
+    //  console.log("IN route  selectedEmployee", selectedEmployee);
     const EmployeeEmail = selectedEmployee.email;
     const id = complaint.id;
     const idd = complaint._id;
@@ -47,7 +47,7 @@ export async function POST(req, res) {
       EmployeeEmail,
     };
 
-    console.log("EEEE");
+    // console.log("EEEE");
     const deleteResult = await complaintsCollection.deleteOne({ id });
     if (deleteResult.deletedCount === 0) {
       return NextResponse.json(
@@ -60,7 +60,7 @@ export async function POST(req, res) {
 
     const result = await assignCollection.insertOne(newAssignment);
 
-    console.log("EEEE2");
+    // console.log("EEEE2");
 
     return NextResponse.json(
       { message: "Assigned Complaint successfully", user: newAssignment },

@@ -7,11 +7,6 @@ import { AuthContext } from "@/app/contexts/authcontext";
 const StaffProfile = () => {
   const { isLoggedIn, loggedInUserEmail } = useContext(AuthContext);
   const [data, setData] = useState({});
-  // console.log("Props.data", props.data[0].email);
-  const encryptPassword = (password) => {
-    return password.replaceAll(/./g, "*");
-    //console.log("Hiii");
-  };
 
   const fetchData = async () => {
     try {
@@ -22,13 +17,13 @@ const StaffProfile = () => {
         throw new Error("Error fetching data");
       }
       const responseData = await response.json();
-      console.log("responseData", responseData);
+      //console.log("responseData", responseData);
       const filteredData = responseData.users.find(
         (u) => u.email === loggedInUserEmail
       );
       setData(filteredData);
 
-      console.log("FILTERED DATA", filteredData);
+      //  console.log("FILTERED DATA", filteredData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -37,8 +32,6 @@ const StaffProfile = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  console.log("DATAA", data);
 
   return (
     <div className="flex">
@@ -139,7 +132,7 @@ const StaffProfile = () => {
           </label>
           <div className="w-72 text-xl ml-2 items-center font-medium text-gray-600">
             <div className="bg-gray-200 w-full h-full px-2 py-1 rounded-md">
-              {encryptPassword(data.password)}
+              *******
             </div>
           </div>
           <div className="w-6 h-6 ml-4">

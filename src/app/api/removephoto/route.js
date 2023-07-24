@@ -13,7 +13,7 @@ export async function POST(request, response) {
       );
     }
 
-    console.log("form", formData);
+    //console.log("form", formData);
     const client = await connectToDatabase();
     const db = client.db();
     const usersCollection = db.collection("users");

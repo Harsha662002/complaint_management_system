@@ -15,12 +15,11 @@ const StaffSolved = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("solvedComplaints data", data.solvedComplaints);
 
         const filteredComplaints = data.solvedComplaints.filter((complaint) => {
           return complaint.StaffSolved === loggedInUserEmail;
         });
-        console.log("filteredComplaints", filteredComplaints);
+
         setSolvedComplaints(filteredComplaints);
       }
     } catch (error) {

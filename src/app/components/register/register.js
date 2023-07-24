@@ -78,7 +78,6 @@ const Register = () => {
           );
 
           const data = await response.json();
-          console.log("data", data);
           if (response.ok && data) {
             alert("Email already Exists!!!");
             setName("");
@@ -109,7 +108,7 @@ const Register = () => {
         });
 
         if (response.ok) {
-          console.log("User created successfully");
+          //console.log("User created successfully");
 
           setName("");
           setEmail("");
