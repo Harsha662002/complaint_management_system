@@ -45,11 +45,3 @@ const Loginpage = () => {
 };
 
 export default Loginpage;
-// import React from "react";
-// import EmployeeLogin from "../components/loginemp/employeelogin";
-
-// const Login = () => {
-//   return <EmployeeLogin />;
-// };
-
-// export default Login;
